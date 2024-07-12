@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:23:19 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/07/11 10:45:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:15:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,19 @@ int	ft_check_str(int i, char *str, int sortie, int base_size)
 	return (sortie);
 }
 
+int	ft_is_in_base(char c, char *base)
+{
+	int	i;
+
+	i = -1;
+	while (base[++i])
+	{
+		if (c == base[i])
+			return (1);
+	}
+	return (0);
+}
+
 int	ft_atoi_base(char *str, char *base)
 {
 	static int	sortie;
@@ -77,7 +90,7 @@ int	ft_atoi_base(char *str, char *base)
 	}
 	if (ft_check_base(base))
 	{
-		while (i < ft_strlen(str))
+		while (i < ft_strlen(str) && ft_is_in_base(str[i], base))
 		{
 			sortie = ft_check_str(i, str, sortie, base_size);
 			i++;
