@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:23:19 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/07/12 09:15:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:15:34 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	ft_check_base(char *base)
 			i++;
 		}
 	}
+	else
+		return (0);
 	return (1);
 }
 
@@ -76,10 +78,11 @@ int	ft_atoi_base(char *str, char *base)
 	static int	sortie;
 	int			base_size;
 	int			sign;
-	static int	i;
+	int			i;
 
 	base_size = ft_strlen(base);
 	sign = 1;
+	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	while (str[i] == '-' || str[i] == '+')

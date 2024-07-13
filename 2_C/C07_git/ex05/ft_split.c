@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:49:59 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/07/12 09:15:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:15:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_count_word(char *str, char *charset)
 	int	i;
 	int	cpt;
 
-	i = 0;
+	i = -1;
 	cpt = 0;
 	while (str[++i])
 	{
@@ -66,11 +66,11 @@ void	ft_calcul(char *str, char *charset, char **sortie)
 	while (str[i])
 	{
 		j = i;
-		while (!ft_is_sep(str[j], charset))
+		while (!ft_is_sep(str[j], charset) && str[j] != '\0')
 		{
-			if (ft_is_sep(str[j + 1], charset))
+			if (ft_is_sep(str[j + 1], charset) || str[j + 1] == '\0')
 			{
-				sortie[k] = (char *)malloc((j - i + 1) * sizeof(char));
+				sortie[k] = (char *)malloc((j - i + 2) * sizeof(char));
 				if (sortie[k] == 0)
 					return ;
 				ft_strcpy(sortie[k], str, i, j);
@@ -80,6 +80,7 @@ void	ft_calcul(char *str, char *charset, char **sortie)
 		}
 		i = j + 1;
 	}
+	sortie[k] = 0;
 }
 
 char	**ft_split(char *str, char *charset)
@@ -88,19 +89,19 @@ char	**ft_split(char *str, char *charset)
 	int		n_word;
 
 	n_word = ft_count_word(str, charset);
-	if (charset == "")
+	if (*charset == '\0')
 		n_word = 1;
-	sortie = (char **) malloc (n_word * sizeof(char *) + 1);
+	sortie = (char **) malloc ((n_word + 1) * sizeof(char *));
 	if (sortie == 0)
 		return (0);
-	if (charset == "")
+	if (*charset == '\0')
 	{
 		sortie[0] = str;
 		sortie[1] = 0;
 		return (sortie);
 	}
 	ft_calcul(str, charset, sortie);
-	sortie[n_word + 1] = 0;
+	sortie[n_word] = 0;
 	return (sortie);
 }
 
@@ -109,15 +110,15 @@ char	**ft_split(char *str, char *charset)
 // int	main()
 // {
 // 	char **sortie;
-// 	char *str = {"Bonjour toi, comment vas-tu ?"};
+// 	char *str = {"Bonjour toi, comment vas-tu fsef"};
 // 	char *charset = {" ,-"};
-// 	int	n_word = ft_count_word(str, charset);
 // 	int i = 0;
 // 	sortie = ft_split(str, charset);
-// 	while ( sortie[i] != 0)
+// 	while (sortie[i] != NULL)
 // 	{
 // 		printf("Sortie[%d] = %s\n", i, sortie[i]);
 // 		i++;
 // 	}
+// 	printf("Sortie[%d] = %s\n", i, sortie[i]);
 // 	return 0;
 // }

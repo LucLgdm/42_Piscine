@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:23:33 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/07/12 09:15:45 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:13:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_conversion_to_base(int n, char *base_to, char *temp, char *sortie)
 		n /= ft_strlen(base_to);
 		i++;
 	}
+	sortie[i + 1] = '\0';
 	while (i--)
 	{
 		if (sortie[0] == '-')
@@ -46,11 +47,11 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (!ft_check_base(base_from) || !ft_check_base(base_to))
 		return (0);
 	int_temp = ft_atoi_base(nbr, base_from);
-	sortie = (char *) malloc (ft_strlen(nbr) * sizeof(char));
-	if (sortie == 0)
+	sortie = (char *) malloc (34 * sizeof(char));
+	if (sortie == NULL)
 		return (NULL);
-	temp = (char *) malloc (ft_strlen(nbr) * sizeof(char));
-	if (temp == 0)
+	temp = (char *) malloc (34 * sizeof(char));
+	if (temp == NULL)
 		return (NULL);
 	if (int_temp < 0)
 	{

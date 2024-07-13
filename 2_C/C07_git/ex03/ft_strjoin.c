@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 08:15:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/07/12 09:15:46 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:15:39 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 
 	if (size == 0)
 	{
-		sortie = (char *)malloc(sizeof(char));
+		sortie = (char *)malloc(sizeof(char) * 1);
 		if (sortie == NULL)
 			return (NULL);
 		sortie[0] = '\0';
@@ -83,7 +83,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	}
 	length = ft_size_totale(size, strs, sep);
 	sortie = (char *) malloc(length * sizeof(char));
-	if (sortie == 0)
+	if (sortie == NULL)
 		return (NULL);
 	sortie[0] = '\0';
 	sortie = ft_write_sortie(strs, sep, sortie, size);
@@ -92,9 +92,9 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 
 // #include <stdio.h>
 // int main(){
-// 	char *strs[] = {"hello", "world", "I", "kiffe", "you"};
+// 	char *strs[] = {}; //{"hello", "world", "I", "kiffe", "you"};
 // 	char *sep = "    ";
-// 	int size = 5;
+// 	int size = 0;
 // 	char *sortie;
 
 // 	sortie = ft_strjoin(size, strs, sep);
