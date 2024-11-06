@@ -1,0 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   btree.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 19:47:13 by marvin            #+#    #+#             */
+/*   Updated: 2024/09/20 19:47:13 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+typedef struct s_btree
+{
+    struct s_btree  *left;
+    struct s_btree  *right;
+    void            *item;
+} t_btree;
+
+void    ft_btree_create_node(void *item);
